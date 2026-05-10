@@ -276,10 +276,10 @@ class WiFiServerApp(ctk.CTk):
                color=TEXT_MUTED).grid(row=0, column=0, pady=(18, 10), padx=16, sticky="w")
         self.btn_add_folder = _btn(ctrl, "＋  Add Folder", self.add_folder)
         self.btn_add_folder.grid(row=1, column=0, sticky="ew", padx=14, pady=4)
-        self.btn_add_files = _btn(ctrl, "＋  Add Files",  self.add_file)
-        self.btn_add_files.grid(row=2, column=0, sticky="ew", padx=14, pady=4)
-        self.btn_clear = _btn(ctrl, "✕  Clear All",   self.clear_list, fg="#E00025", hover="#b71c1c")
-        self.btn_clear.grid(row=3, column=0, sticky="ew", padx=14, pady=4)
+        self.btn_add_file = _btn(ctrl, "＋  Add Files",  self.add_file)
+        self.btn_add_file.grid(row=2, column=0, sticky="ew", padx=14, pady=4)
+        _btn(ctrl, "✕  Clear All",   self.clear_list,
+             fg="#E00025", hover="#b71c1c").grid(row=3, column=0, sticky="ew", padx=14, pady=4)
 
         # Spacer
         ctk.CTkFrame(ctrl, fg_color="transparent").grid(row=4, column=0, sticky="nsew")
@@ -541,21 +541,35 @@ class WiFiServerApp(ctk.CTk):
 
     # ── List management ───────────────────────────────────────────────────
     def add_folder(self):
+        self.btn_add_folder.configure(state="disabled", text="⌛  Opening...")
+        self.update()
+        self.after(50, self._process_add_folder)
+
+    def _process_add_folder(self):
         p = fd.askdirectory(title="Select Folder to Host")
-        if p: self._add_root(p)
+        if p: 
+            self._add_root(p)
+            self.refresh_list_ui()
+        self.btn_add_folder.configure(state="normal", text="＋  Add Folder")
 
     def add_file(self):
+        self.btn_add_file.configure(state="disabled", text="⌛  Opening...")
+        self.update()
+        self.after(50, self._process_add_file)
+
+    def _process_add_file(self):
         paths = fd.askopenfilenames(title="Select Files to Host")
         if paths:
             for p in paths:
                 self._add_root(p)
+            self.refresh_list_ui()
+        self.btn_add_file.configure(state="normal", text="＋  Add Files")
 
     def _add_root(self, path):
         if any(r["local"] == path for r in self.roots):
             self.write_log("warning", f"[WARN] Already hosting: {path}")
             return
         self.roots.append({"local": path, "remote": ""})
-        self.refresh_list_ui()
         self.write_log("info", f"[ADDED]  {path}")
 
     def remove_item(self, path):

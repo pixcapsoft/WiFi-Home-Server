@@ -1,7 +1,7 @@
 # 📡 WiFi Home Server
 
 <div align="center">
-  <img src="https://img.shields.io/badge/Python-3.8+-blue.svg?style=for-the-badge&logo=python&logoColor=white" alt="Python">
+  <img src="https://img.shields.io/badge/Python-3.11+-blue.svg?style=for-the-badge&logo=python&logoColor=white" alt="Python">
   <img src="https://img.shields.io/badge/CustomTkinter-DarkTheme-2979ff?style=for-the-badge&logo=python&logoColor=white" alt="CustomTkinter">
   <img src="https://img.shields.io/badge/License-Apache_2.0-green.svg?style=for-the-badge" alt="License">
   <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=for-the-badge" alt="PRs Welcome">
@@ -25,12 +25,12 @@ No ADB, no USB, and no client-side app needed! ✨
 
 ---
 
-## 📸 Screenshots
+## 📸 Screenshotss
 
 > **Home Panel** showing the list of hosted items and server controls.
 ![Home Panel With Items](./images/1.png)
 ![Home Panel With Out Items](./images/2.png)
-![Credit Panels](./images/3.png)
+![Credit Panel](./images/3.png)
 > **Console Panel** displaying live connection logs.
 
 ---
@@ -51,7 +51,7 @@ You don't need Python installed to use WiFi Home Server! Just download the pre-b
 If you prefer to run the application from the source code, follow these steps:
 
 ### Prerequisites
-- Python 3.8 or newer
+- Python 3.11 or newer
 - `customtkinter` package
 
 ### Setup
