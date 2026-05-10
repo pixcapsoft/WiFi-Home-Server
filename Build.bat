@@ -1,0 +1,3 @@
+echo Starting Building...
+
+pyinstaller --onefile --windowed --icon=icon.ico --add-data "icon.ico;." --add-data "main.py;." --name WiFi-Home-Server gui.py

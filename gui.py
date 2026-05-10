@@ -104,6 +104,15 @@ class WiFiServerApp(ctk.CTk):
         self.geometry("1020x680")
         self.minsize(860, 560)
 
+        # Set application icon
+        try:
+            import sys
+            base_path = sys._MEIPASS if getattr(sys, 'frozen', False) else os.path.dirname(__file__)
+            icon_path = os.path.join(base_path, "icon.ico")
+            self.iconbitmap(icon_path)
+        except Exception:
+            pass
+
         self.server_instance   = None
         self.roots             = []
         self.active_connections = 0
