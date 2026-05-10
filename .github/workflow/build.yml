@@ -19,7 +19,7 @@ jobs:
           python-version: '3.11'
           
       - name: Run build script
-        run: echo. | build.bat
+        run: echo. | Build.bat
         shell: cmd
         
       - name: Create Zip Archive
