@@ -437,28 +437,55 @@ class WiFiServerApp(ctk.CTk):
         if self.server_instance:
             self.write_log("warning", "[WARN] Server is already running.")
             return
-        try:
-            port = int(self.port_var.get())
-            self.server_instance = main.start_server_background(self.roots, port=port)
-            self.btn_start.configure(state="disabled")
-            self.btn_stop.configure(state="normal")
-            self.lbl_server_status.configure(
-                text=f"▶  Running  :{port}", text_color=SUCCESS)
-            self.active_connections = 0
-            self.lbl_conn.configure(text="0 devices connected  ")
-        except Exception as e:
-            self.write_log("error", f"[ERR] Could not start server: {e}")
+
+        self.btn_start.configure(state="disabled", text="⌛  Starting...")
+        self.lbl_server_status.configure(text="⌛  Starting...", text_color=WARN)
+        
+        def _start():
+            try:
+                port = int(self.port_var.get())
+                instance = main.start_server_background(self.roots, port=port)
+                self.after(0, lambda: self._on_server_started(instance, port))
+            except Exception as e:
+                self.after(0, lambda: self._on_server_start_error(e))
+                
+        threading.Thread(target=_start, daemon=True).start()
+
+    def _on_server_started(self, instance, port):
+        self.server_instance = instance
+        self.btn_start.configure(text="▶  Start Server")
+        self.btn_stop.configure(state="normal")
+        self.lbl_server_status.configure(
+            text=f"▶  Running  :{port}", text_color=SUCCESS)
+        self.active_connections = 0
+        self.lbl_conn.configure(text="0 devices connected  ")
+
+    def _on_server_start_error(self, e):
+        self.btn_start.configure(state="normal", text="▶  Start Server")
+        self.lbl_server_status.configure(text="⏸  Server Stopped", text_color=TEXT_MUTED)
+        self.write_log("error", f"[ERR] Could not start server: {e}")
 
     def stop_server(self):
-        if self.server_instance:
+        if not self.server_instance:
+            return
+
+        self.btn_stop.configure(state="disabled", text="⌛  Stopping...")
+        self.lbl_server_status.configure(text="⌛  Stopping...", text_color=WARN)
+
+        def _stop():
             self.server_instance.shutdown()
-            self.server_instance = None
-            self.write_log("warning", "[INFO] Server stopped.")
+            self.after(0, self._on_server_stopped)
+
+        threading.Thread(target=_stop, daemon=True).start()
+
+    def _on_server_stopped(self):
+        self.server_instance = None
         self.btn_start.configure(state="normal")
-        self.btn_stop.configure(state="disabled")
+        self.btn_stop.configure(text="■  Stop Server")
         self.lbl_server_status.configure(text="⏸  Server Stopped", text_color=TEXT_MUTED)
         self.active_connections = 0
         self.lbl_conn.configure(text="0 devices connected  ")
+        self.write_log("warning", "[INFO] Server stopped.")
 
     def check_updates(self):
         repo = self.repo_var.get().strip()
