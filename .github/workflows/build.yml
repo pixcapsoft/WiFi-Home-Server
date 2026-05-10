@@ -23,9 +23,9 @@ jobs:
         shell: cmd
         
       - name: Create Zip Archive
-        run: Compress-Archive -Path dist\* -DestinationPath WiFi-Home-Server-Windows(Beta).zip
+        run: Compress-Archive -Path dist\* -DestinationPath WiFi-Home-Server-Windows.zip
         
       - name: Upload release asset
         uses: softprops/action-gh-release@v2
         with:
-          files: WiFi-Home-Server-Windows(Beta).zip
+          files: WiFi-Home-Server-Windows.zip
