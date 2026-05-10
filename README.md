@@ -36,6 +36,19 @@ No ADB, no USB, and no client-side app needed! ✨
 
 ## 🛠️ Installation & Usage
 
+### 🚀 Quick Start (No Python Required)
+You don't need Python installed to use WiFi Home Server! Just download the pre-built executable:
+
+1. Go to the [Releases](https://github.com/pixcapsoft/WiFi-Home-Server/releases/latest) page.
+2. Download the latest executable file.
+3. Run the downloaded file—it works completely out of the box!
+
+---
+
+## 💻 Build from Source
+
+If you prefer to run the application from the source code, follow these steps:
+
 ### Prerequisites
 - Python 3.8 or newer
 - `customtkinter` package
