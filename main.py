@@ -440,29 +440,3 @@ def start_server_background(roots: list[dict], port: int = 8765) -> HTTPServer:
     thread.start()
 
     return server     # caller can call server.shutdown() to stop
-
-
-# ─────────────────────────────────────────────────────────────────────────────
-# EXAMPLE USAGE
-# ─────────────────────────────────────────────────────────────────────────────
-
-if __name__ == "__main__":
-    """
-    Run this file directly to test the server.
-
-    Edit `shared` below to point at real paths on your machine,
-    then open the printed URL on your phone's browser.
-    """
-
-    shared = [
-        {"local": "E:\Github\chatui.html", "remote": "/sdcard/Download/"},
-    ]
-
-    # Blocking — runs until you press Ctrl+C
-    start_server(shared, port=8765)
-
-    # ── OR — non-blocking (e.g. inside a GUI or alongside a watcher): ──────
-    #
-    # server = start_server_background(shared, port=8765)
-    # ... do other things here ...
-    # server.shutdown()   # call this when you want to stop
