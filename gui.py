@@ -274,10 +274,12 @@ class WiFiServerApp(ctk.CTk):
 
         _label(ctrl, "Add Content", size=12, weight="bold",
                color=TEXT_MUTED).grid(row=0, column=0, pady=(18, 10), padx=16, sticky="w")
-        _btn(ctrl, "＋  Add Folder", self.add_folder).grid(row=1, column=0, sticky="ew", padx=14, pady=4)
-        _btn(ctrl, "＋  Add Files",  self.add_file).grid(row=2, column=0, sticky="ew", padx=14, pady=4)
-        _btn(ctrl, "✕  Clear All",   self.clear_list,
-             fg="#E00025", hover="#b71c1c").grid(row=3, column=0, sticky="ew", padx=14, pady=4)
+        self.btn_add_folder = _btn(ctrl, "＋  Add Folder", self.add_folder)
+        self.btn_add_folder.grid(row=1, column=0, sticky="ew", padx=14, pady=4)
+        self.btn_add_files = _btn(ctrl, "＋  Add Files",  self.add_file)
+        self.btn_add_files.grid(row=2, column=0, sticky="ew", padx=14, pady=4)
+        self.btn_clear = _btn(ctrl, "✕  Clear All",   self.clear_list, fg="#E00025", hover="#b71c1c")
+        self.btn_clear.grid(row=3, column=0, sticky="ew", padx=14, pady=4)
 
         # Spacer
         ctk.CTkFrame(ctrl, fg_color="transparent").grid(row=4, column=0, sticky="nsew")

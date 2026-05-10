@@ -27,9 +27,10 @@ No ADB, no USB, and no client-side app needed! ✨
 
 ## 📸 Screenshots
 
-*(Replace this placeholder with real UI screenshots)*
-
 > **Home Panel** showing the list of hosted items and server controls.
+![Home Panel With Items](./images/1.png)
+![Home Panel With Out Items](./images/2.png)
+![Credit Panels](./images/3.png)
 > **Console Panel** displaying live connection logs.
 
 ---
