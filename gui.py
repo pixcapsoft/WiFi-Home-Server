@@ -247,14 +247,17 @@ class WiFiServerApp(ctk.CTk):
     def _build_home(self):
         f = self.home_frame
         f.configure(fg_color=BG_DEEP)
-        f.grid_rowconfigure(0, weight=3)
-        f.grid_rowconfigure(1, weight=2)
-        f.grid_columnconfigure(0, weight=1)
-        f.grid_columnconfigure(1, weight=0)
+
+        # PanedWindows for resizing
+        self.main_paned = tk.PanedWindow(f, orient="vertical", bd=0, sashwidth=16, bg=BG_DEEP, sashcursor="sb_v_double_arrow")
+        self.main_paned.pack(fill="both", expand=True, padx=16, pady=16)
+
+        self.top_paned = tk.PanedWindow(self.main_paned, orient="horizontal", bd=0, sashwidth=8, bg=BG_DEEP, sashcursor="sb_h_double_arrow")
+        self.main_paned.add(self.top_paned, stretch="always", minsize=200)
 
         # ── File list panel ───────────────────────────────────────────────
-        list_panel = ctk.CTkFrame(f, fg_color=BG_PANEL, corner_radius=12)
-        list_panel.grid(row=0, column=0, padx=(16, 8), pady=16, sticky="nsew")
+        list_panel = ctk.CTkFrame(self.top_paned, fg_color=BG_PANEL, corner_radius=12)
+        self.top_paned.add(list_panel, stretch="always", minsize=300)
         list_panel.grid_rowconfigure(1, weight=1)
         list_panel.grid_columnconfigure(0, weight=1)
 
@@ -276,8 +279,8 @@ class WiFiServerApp(ctk.CTk):
         self.refresh_list_ui()
 
         # ── Controls panel ────────────────────────────────────────────────
-        ctrl = ctk.CTkFrame(f, fg_color=BG_PANEL, corner_radius=12)
-        ctrl.grid(row=0, column=1, padx=(0, 16), pady=16, sticky="nsew")
+        ctrl = ctk.CTkFrame(self.top_paned, fg_color=BG_PANEL, corner_radius=12)
+        self.top_paned.add(ctrl, stretch="never", minsize=220)
         ctrl.grid_rowconfigure(7, weight=1)  # Spacer row
         ctrl.grid_columnconfigure(0, weight=1)
 
@@ -318,8 +321,8 @@ class WiFiServerApp(ctk.CTk):
             ToolTip(btn, tip)
 
         # ── Console panel ─────────────────────────────────────────────────
-        console = ctk.CTkFrame(f, fg_color=BG_PANEL, corner_radius=12)
-        console.grid(row=1, column=0, columnspan=2, padx=16, pady=(0, 16), sticky="nsew")
+        console = ctk.CTkFrame(self.main_paned, fg_color=BG_PANEL, corner_radius=12)
+        self.main_paned.add(console, stretch="never", minsize=120)
         console.grid_rowconfigure(1, weight=1)
         console.grid_columnconfigure(0, weight=1)
 
