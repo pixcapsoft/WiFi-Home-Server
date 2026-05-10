@@ -275,7 +275,7 @@ class WiFiServerApp(ctk.CTk):
         _label(ctrl, "Add Content", size=12, weight="bold",
                color=TEXT_MUTED).grid(row=0, column=0, pady=(18, 10), padx=16, sticky="w")
         _btn(ctrl, "＋  Add Folder", self.add_folder).grid(row=1, column=0, sticky="ew", padx=14, pady=4)
-        _btn(ctrl, "＋  Add File",   self.add_file).grid(row=2, column=0, sticky="ew", padx=14, pady=4)
+        _btn(ctrl, "＋  Add Files",  self.add_file).grid(row=2, column=0, sticky="ew", padx=14, pady=4)
         _btn(ctrl, "✕  Clear All",   self.clear_list,
              fg="#E00025", hover="#b71c1c").grid(row=3, column=0, sticky="ew", padx=14, pady=4)
 
@@ -302,7 +302,7 @@ class WiFiServerApp(ctk.CTk):
         ToolTip(self.btn_start, "Start the WiFi file server")
         ToolTip(self.btn_stop, "Stop the WiFi file server")
         # Add tooltips to add/clear buttons
-        for row, tip in zip([1,2,3], ["Add a folder to host", "Add a file to host", "Clear all hosted items"]):
+        for row, tip in zip([1,2,3], ["Add a folder to host", "Add files to host", "Clear all hosted items"]):
             btn = ctrl.grid_slaves(row=row, column=0)[0]
             ToolTip(btn, tip)
 
@@ -516,8 +516,10 @@ class WiFiServerApp(ctk.CTk):
         if p: self._add_root(p)
 
     def add_file(self):
-        p = fd.askopenfilename(title="Select File to Host")
-        if p: self._add_root(p)
+        paths = fd.askopenfilenames(title="Select Files to Host")
+        if paths:
+            for p in paths:
+                self._add_root(p)
 
     def _add_root(self, path):
         if any(r["local"] == path for r in self.roots):
@@ -550,7 +552,7 @@ class WiFiServerApp(ctk.CTk):
             _label(placeholder, "No items yet",
                    size=13, color=TEXT_MUTED).pack()
             _label(placeholder,
-                   "Click  ＋ Add Folder  or  ＋ Add File  to get started.",
+                   "Click  ＋ Add Folder  or  ＋ Add Files  to get started.",
                    size=11, color="#8d97a5").pack(pady=4)
             return
 
