@@ -7,6 +7,12 @@
   <img src="https://img.shields.io/badge/License-Apache_2.0-green.svg?style=for-the-badge" alt="License">
   <img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=for-the-badge" alt="PRs Welcome">
   <img src="https://img.shields.io/badge/Maintained%3F-yes-green.svg?style=for-the-badge" alt="Maintained">
+
+[![Build](https://github.com/pixcapsoft/WiFi-Home-Server/actions/workflows/build.yml/badge.svg)](https://github.com/pixcapsoft/WiFi-Home-Server/actions/workflows/build.yml)
+[![Release](https://img.shields.io/github/v/release/pixcapsoft/WiFi-Home-Server)](https://github.com/pixcapsoft/WiFi-Home-Server/releases)
+[![Downloads](https://img.shields.io/github/downloads/pixcapsoft/WiFi-Home-Server/total.svg)](https://github.com/pixcapsoft/WiFi-Home-Server/releases)
+![Platform](https://img.shields.io/badge/platform-Windows-lightgrey.svg)
+[![Issues](https://img.shields.io/github/issues/pixcapsoft/WiFi-Home-Server)](https://github.com/pixcapsoft/WiFi-Home-Server/issues)
 </div>
 
 <br>
