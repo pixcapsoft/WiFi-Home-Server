@@ -171,7 +171,7 @@ def build_index_html(roots: list[dict]) -> str:
         </tr>"""
 
     body = f"""
-    <h1>📡 WiFi-Home-Server File Server</h1>
+    <h1>📡 WiFi-Home-Server Server</h1>
     <p class="sub">Open a file to download it, or tap a folder to browse.</p>
     <table>
       <tr><th>Name</th><th style="text-align:right">Size</th></tr>

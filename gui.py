@@ -164,7 +164,7 @@ class WiFiServerApp(ctk.CTk):
                            corner_radius=5, fg_color=ACCENT)
         dot.pack(side="left", padx=(0, 10))
 
-        _label(logo_wrap, "WiFi Home sServer",
+        _label(logo_wrap, "WiFi Home Server",
                size=18, weight="bold", color=TEXT_PRIMARY).pack(side="left")
 
         _label(sb, self.app_version + " Build by PixCap Soft", size=10, color=TEXT_MUTED).grid(
@@ -413,7 +413,7 @@ class WiFiServerApp(ctk.CTk):
         wrap.pack(fill="both", expand=True, padx=28, pady=28)
 
         _label(wrap, "About", size=20, weight="bold").pack(anchor="w", pady=(0, 6))
-        _label(wrap, "Open-source WiFi file server for local networks built by PixCap Soft. Host your files & create your own home server.",
+        _label(wrap, "Open-source WiFi file server for local networks build by PixCap Soft. Host your files & create your own home server.",
                size=12, color=TEXT_MUTED).pack(anchor="w", pady=(0, 20))
 
         card = ctk.CTkFrame(wrap, fg_color=BG_PANEL, corner_radius=12)
