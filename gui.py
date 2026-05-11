@@ -116,7 +116,7 @@ class WiFiServerApp(ctk.CTk):
         self.server_instance   = None
         self.roots             = []
         self.active_connections = 0
-        self.app_version       = "v0.5.7"
+        self.app_version       = "v0.6.0"
         self.title(f"WiFi Home Server {self.app_version} - A lightweight file hosting via WiFi networks")
 
         self.repo_var = ctk.StringVar(value="https://github.com/pixcapsoft/WiFi-Home-Server")
@@ -530,8 +530,9 @@ class WiFiServerApp(ctk.CTk):
                 self.after(0, lambda: self.write_log("info", f"[UPDATE] {msg}"))
                 self.after(0, lambda: messagebox.showinfo("Update Check", msg))
             except Exception as e:
-                self.after(0, lambda idx=str(e): self.write_log("error", f"[UPDATE ERR] {idx}"))
-                self.after(0, lambda idx=str(e): messagebox.showerror("Update Failed", idx))
+                # self.after(0, lambda idx=str(e): self.write_log("error", f"[UPDATE ERR] {idx}"))
+                self.after(0, lambda idx=str(e): self.write_log("error", f"[UPDATE ERR] Failed to check updates. Make sure you have a good internect connection."))
+                self.after(0, lambda idx=str(e): messagebox.showerror("Update Check Failed", idx))
             finally:
                 self.after(0, lambda: self._nav_btns["update"].configure(
                     text="↑  Check for Updates", state="normal"))
