@@ -174,13 +174,20 @@ class WiFiServerApp(ctk.CTk):
 
         # Nav buttons
         self._nav_btns = {}
+        # nav_items = [
+        #     ("home",     "🏠  Home", "Go to Home page"),
+        #     ("settings", "⚙️  Settings", "Open Settings"),
+        #     ("credits",  "✦  Credits", "Show Credits/About"),
+        #     ("update",   "↑  Check for Updates", "Check for new updates on GitHub"),
+        # ]
+        # for i, (key, label, tip) in enumerate(nav_items, start=3):
         nav_items = [
-            ("home",     "🏠  Home", "Go to Home page"),
-            ("settings", "⚙️  Settings", "Open Settings"),
-            ("credits",  "✦  Credits", "Show Credits/About"),
-            ("update",   "↑  Check for Updates", "Check for new updates on GitHub"),
+            ("home",     "🏠  Home"),
+            ("settings", "⚙️  Settings"),
+            ("credits",  "✦  Credits"),
+            ("update",   "↑  Check for Updates"),
         ]
-        for i, (key, label, tip) in enumerate(nav_items, start=3):
+        for i, (key, label) in enumerate(nav_items, start=3):
             if key == "update":
                 btn = ctk.CTkButton(
                     sb, text=label, anchor="w",
@@ -204,7 +211,7 @@ class WiFiServerApp(ctk.CTk):
             pady_val = 2 if i < 6 else (16, 22) if key == "update" else 0
             btn.grid(row=i, column=0, sticky="ew", padx=10, pady=pady_val)
             self._nav_btns[key] = btn
-            ToolTip(btn, tip)
+            # ToolTip(btn, tip)
 
     # ── Status bar ────────────────────────────────────────────────────────
     def _build_status_bar(self):
